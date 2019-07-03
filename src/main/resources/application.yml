@@ -1,0 +1,51 @@
+spring:
+  profiles:
+    active: dev
+  cloud:
+    gateway:
+      forwarded:
+        enabled: true
+      x-forwarded:
+        enabled: true
+        forEnabled: true
+        protoEnabled: true
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true
+          filters:
+      globalcors:
+        cors-configurations:
+          origin:
+            allowed-origins: '*'
+            allowed-headers: '*'
+            allowed-methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+      routes:
+        - id: eureka-service
+          uri: lb://demo-eureka
+          predicates:
+            - Path=/eureka-service/**
+          filters:
+            - StripPrefix=1
+        - id: eureka-static
+          uri: lb://demo-eureka
+          predicates:
+            - Path=/eureka/**
+          filters:
+            - StripPrefix=0
+        - id: ticket-saas
+          uri: lb://ticket-saas
+          predicates:
+            - Path=/saas/**
+          filters:
+            - StripPrefix=1
+        - id: ticket-fsale
+          uri: lb://ticket-fsale
+          predicates:
+            - Path=/fsale/**
+          filters:
+            - StripPrefix=1

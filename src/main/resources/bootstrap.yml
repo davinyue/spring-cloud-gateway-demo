@@ -1,0 +1,16 @@
+server:
+  http2:
+    enabled: true
+spring:
+  application:
+    name: gateway
+eureka:
+  instance:
+    prefer-ip-address: true
+    # 每隔5s发送一次心跳
+    lease-renewal-interval-in-seconds: 5
+    # 告知服务端15秒还未收到心跳的话，就将该服务移除列表
+    lease-expiration-duration-in-seconds: 15
+  client:
+    #eclient拉取服务注册信息时间间隔，默认30s，网关5s拉取一次，以便更快响应流量导向
+    registry-fetch-interval-seconds: 2
