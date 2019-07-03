@@ -49,3 +49,10 @@ spring:
             - Path=/fsale/**
           filters:
             - StripPrefix=1
+system:
+  redirections:
+    '[/]': '/saas/index'
+    '[/saas]': '/saas/index'
+    '[/saas/]': '/saas/index'
+    '[/fsale]': '/fsale/sIndex'
+    '[/fsale/]': '/fsale/sIndex'
