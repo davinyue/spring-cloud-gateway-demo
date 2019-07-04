@@ -11,7 +11,7 @@
         <property name="log_pattern">%-5level %d{yyyy-MM-dd HH:mm:ss} [%t] %l - %msg%n</property>
         <!-- 接受的日志级别 :trace：追踪，就是程序推进一下，可以写个trace输出; debug：调试，一般作为最低级别，trace基本不用;
             info：输出重要的信息，使用较多; warn：警告，有些信息不是错误信息，但也要给程序员一些提示; error：错误信息,用的也很多; fatal：致命错误,级别较高，这种级别不用调试了，重写吧…… -->
-        <property name="log_level">debug</property>
+        <property name="log_level">INFO</property>
     </Properties>
     <Appenders>
         <!-- 输出控制台的配置 -->

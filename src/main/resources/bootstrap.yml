@@ -3,7 +3,7 @@ server:
     enabled: true
 spring:
   application:
-    name: gateway
+    name: ticket-gateway
 eureka:
   instance:
     prefer-ip-address: true

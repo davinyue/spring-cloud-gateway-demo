@@ -24,15 +24,21 @@ spring:
               - POST
               - PUT
               - DELETE
+      default-filters:
+        # 熔断降级配置
+        - name: Hystrix
+          args:
+            name: default
+            fallbackUri: 'forward:/defaultfallback'
       routes:
         - id: eureka-service
-          uri: lb://demo-eureka
+          uri: lb://eureka
           predicates:
             - Path=/eureka-service/**
           filters:
             - StripPrefix=1
         - id: eureka-static
-          uri: lb://demo-eureka
+          uri: lb://eureka
           predicates:
             - Path=/eureka/**
           filters:
@@ -43,12 +49,35 @@ spring:
             - Path=/saas/**
           filters:
             - StripPrefix=1
+        - id: ticket-saas-1
+          uri: lb://ticket-saas
+          predicates:
+            - Path=/
         - id: ticket-fsale
           uri: lb://ticket-fsale
           predicates:
             - Path=/fsale/**
           filters:
             - StripPrefix=1
+        - id: ticket-fsale-ureport
+          uri: lb://ticket-fsale
+          predicates:
+            - Path=/ureport/**
+          filters:
+            - StripPrefix=0
+# hystrix 信号量隔离，3秒后自动超时
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+          semaphore:
+            # 最大并发请求数, 默认10
+            maxConcurrentRequests: 200
+          thread:
+            # 执行超时时间，默认1000ms
+            timeoutInMilliseconds: 30000
 system:
   redirections:
     '[/]': '/saas/index'

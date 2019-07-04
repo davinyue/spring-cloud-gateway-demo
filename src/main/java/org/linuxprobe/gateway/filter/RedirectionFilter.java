@@ -1,5 +1,6 @@
 package org.linuxprobe.gateway.filter;
 
+
 import org.linuxprobe.gateway.configuration.SystemProperties;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -18,7 +19,6 @@ import java.util.Map;
  * 重定向拦截器, 实现自定义重定向
  */
 public class RedirectionFilter implements GlobalFilter, Ordered {
-
     private SystemProperties systemProperties;
 
     public RedirectionFilter(SystemProperties systemProperties) {

@@ -1,5 +1,6 @@
 package org.linuxprobe.gateway.configuration;
 
+
 import lombok.Getter;
 import lombok.Setter;
 import org.linuxprobe.gateway.filter.HeartbeatRequestFilter;

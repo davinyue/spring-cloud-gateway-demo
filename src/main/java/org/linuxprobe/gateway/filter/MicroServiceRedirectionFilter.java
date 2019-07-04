@@ -37,7 +37,7 @@ public class MicroServiceRedirectionFilter implements GlobalFilter, Ordered {
             @Override
             public Mono<Void> writeWith(Publisher<? extends DataBuffer> body) {
                 // 如果相应302重定向
-                if (this.getStatusCode().is3xxRedirection()) {
+                if (this.getStatusCode().value() == 302) {
                     Route requestRoute = exchange.getAttribute(ServerWebExchangeUtils.GATEWAY_ROUTE_ATTR);
                     // 如果访问的是微服务
                     if (requestRoute.getUri().toString().toLowerCase().startsWith("lb://")) {

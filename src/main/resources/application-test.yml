@@ -3,6 +3,6 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:5000/eureka
+      defaultZone: http://localhost:5001/eureka
 logging:
   config: classpath:log4j2-test.xml
